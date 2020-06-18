@@ -1,7 +1,32 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+<EditForm Model="person" OnValidSubmit="@SubmitValidForm">
+    <FluentValidationValidator />
+    @*<ValidationSummary />*@
+    <Row>
+        <Column ColumnSize="ColumnSize.Is2">
+            <NumericEdit @bind-Value="person.Age" Min="0" Max="999" />
+            <ValidationMessage For="@(() => person.Age)" />
+        </Column>
 
-Welcome to your new app.
+        @*<Column ColumnSize="ColumnSize.Is2">
+            <InputNumber @bind-Value="person.Age" />
+            <ValidationMessage For="@(() => person.Age)" />
+        </Column>*@
+    </Row>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+    <button type="submit">Save</button>
+</EditForm>
+
+@code
+{
+    Person person = new Person
+    {
+        Age = -1
+    };
+
+    void SubmitValidForm()
+    {
+        Console.WriteLine("Form Submitted Successfully!");
+    }
+}
