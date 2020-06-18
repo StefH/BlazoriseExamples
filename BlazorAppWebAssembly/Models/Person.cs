@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using FluentValidation;
 
 namespace BlazorAppWebAssembly.Models
@@ -9,6 +10,8 @@ namespace BlazorAppWebAssembly.Models
         public int Age { get; set; }
         public string EmailAddress { get; set; }
         public Address Address { get; set; } = new Address();
+
+        public DateTime? Date { get; set; }
     }
 
     public class PersonValidator : AbstractValidator<Person>

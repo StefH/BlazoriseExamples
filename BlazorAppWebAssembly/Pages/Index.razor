@@ -1,19 +1,26 @@
 ﻿@page "/"
+@using System.Text.Json.Serialization
+@using System.Text.Json
 
 <EditForm Model="person" OnValidSubmit="@SubmitValidForm">
     <FluentValidationValidator />
     @*<ValidationSummary />*@
-    <Row>
-        <Column ColumnSize="ColumnSize.Is2">
-            <NumericEdit @bind-Value="person.Age" Min="0" Max="999" />
-            <ValidationMessage For="@(() => person.Age)" />
-        </Column>
 
-        @*<Column ColumnSize="ColumnSize.Is2">
+    <Field>
+        <NumericEdit @bind-Value="person.Age" Min="0" Max="999"></NumericEdit>
+        <ValidationMessage For="@(() => person.Age)" />
+    </Field>
+
+
+    @*<Column ColumnSize="ColumnSize.Is2">
             <InputNumber @bind-Value="person.Age" />
             <ValidationMessage For="@(() => person.Age)" />
         </Column>*@
-    </Row>
+
+    <Field>
+        <DateEdit TValue="DateTime?" @bind-Date="@person.Date" Placeholder="dd-mm-yyyy" />
+
+    </Field>
 
     <button type="submit">Save</button>
 </EditForm>
@@ -22,11 +29,23 @@
 {
     Person person = new Person
     {
-        Age = -1
+        Age = -1,
+        //Date = DateTime.Now
     };
+
+    public class Foo
+    {
+        public string Name { get; set; }
+        public string Street { get; set; }
+        public JsonElement DynamicInfo { get; set; }
+    }
 
     void SubmitValidForm()
     {
+        DataAnnotationsValidator v;
+
+        DateEdit<DateTime?> d;
         Console.WriteLine("Form Submitted Successfully!");
     }
+
 }
