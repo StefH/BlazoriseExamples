@@ -21,4 +21,8 @@
     <Folder Include="Constants\" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="$(OutDir)/wwwroot/_framework/blazor.webassembly.js" />
+  </Target>
+
 </Project>
