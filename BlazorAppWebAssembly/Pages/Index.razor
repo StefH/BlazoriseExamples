@@ -12,12 +12,19 @@
         };
     }
 
-    @*<Validation>*@
-        <Field>
-            <NumericEdit class="@editContext.BlazoriseFieldCssClass(() => person.Age)" @bind-Value="person.Age" Min="0" Max="999"></NumericEdit>
+    @*<Field>
+            <NumericEdit @bind-Value="person.Age" Min="0" Max="999"></NumericEdit>
             <ValidationMessage For="@(() => person.Age)" />
-        </Field>
-    @*</Validation>*@
+        </Field>*@
+    <Validations Mode="ValidationMode.Manual" Model="@person">
+        <Validation>
+            <Field>
+                <NumericEdit class="@editContext.BlazoriseFieldCssClass(() => person.Age)" @bind-Value="person.Age" Min="0" Max="999"></NumericEdit>
+                @*<NumericEdit @bind-Value="person.Age" Min="0" Max="999"></NumericEdit>*@
+                <ValidationMessage For="@(() => person.Age)" />
+            </Field>
+        </Validation>
+    </Validations>
 
     @*<Column ColumnSize="ColumnSize.Is2">
             <InputNumber @bind-Value="person.Age" />

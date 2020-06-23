@@ -22,10 +22,10 @@ namespace BlazorAppWebAssembly
 
             var c = new BootstrapClassProvider();
 
-            //if (!modified)
-            //{
-            //    return c.ToValidationStatus(ValidationStatus.None);
-            //}
+            if (!modified)
+            {
+                return c.ToValidationStatus(ValidationStatus.None);
+            }
 
             return c.ToValidationStatus(isValid ? ValidationStatus.Success : ValidationStatus.Error);
 
