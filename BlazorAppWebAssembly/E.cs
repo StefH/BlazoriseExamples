@@ -17,6 +17,8 @@ namespace BlazorAppWebAssembly
             bool modified = editContext.IsModified(accessor);
             Console.WriteLine($"{fi.FieldName} modified = {modified}");
 
+            Console.WriteLine($"{fi.FieldName} messages = {string.Join(',',editContext.GetValidationMessages(accessor))}");
+
             bool isValid = !editContext.GetValidationMessages(accessor).Any();
             Console.WriteLine($"{fi.FieldName} valid = {isValid}");
 
@@ -24,7 +26,7 @@ namespace BlazorAppWebAssembly
 
             if (!modified)
             {
-                return c.ToValidationStatus(ValidationStatus.None);
+               // return c.ToValidationStatus(ValidationStatus.None);
             }
 
             return c.ToValidationStatus(isValid ? ValidationStatus.Success : ValidationStatus.Error);
