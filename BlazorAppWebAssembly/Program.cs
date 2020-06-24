@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
+using FluentValidation;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,6 +28,9 @@ namespace BlazorAppWebAssembly
             {
                 BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
             });
+
+            //builder.Services.AddTransient<IValidator<PersonValidator>, CreateAccountFormModelValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
             builder.RootComponents.Add<App>("app");
 

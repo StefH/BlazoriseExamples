@@ -26,7 +26,7 @@ namespace BlazorAppWebAssembly
 
             if (!modified)
             {
-               // return c.ToValidationStatus(ValidationStatus.None);
+               return c.ToValidationStatus(ValidationStatus.None);
             }
 
             return c.ToValidationStatus(isValid ? ValidationStatus.Success : ValidationStatus.Error);
