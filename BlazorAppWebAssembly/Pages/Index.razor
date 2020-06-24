@@ -12,14 +12,9 @@
         };
     }
 
-    @*<Field>
-            <NumericEdit @bind-Value="person.Age" Min="0" Max="999"></NumericEdit>
-            <ValidationMessage For="@(() => person.Age)" />
-        </Field>*@
-    
     <Validation>
         <Field>
-            <FieldLabel><strong>Capacity</strong></FieldLabel>
+            <FieldLabel><strong>Age</strong></FieldLabel>
             <NumericEdit @bind-Value="@person.Age" Min="0" Max="999">
                 <Feedback>
                     <ValidationError />
@@ -31,17 +26,17 @@
     <Field>
         @*<NumericEdit2 @bind-Value="person.Age" Min="0" Max="999"></NumericEdit2>*@
         @*<NumericEdit2 class="@editContext.BlazoriseFieldCssClass(() => person.Age)" @bind-Value="person.Age" Min="0" Max="999"></NumericEdit2>*@
-        <NumericEdit class="@editContext.BlazoriseFieldCssClass(() => person.Age)" TValue="int" Value="person.Age" ValueChanged="@((v) => ValueChanged(v, editContext))" Min="0" Max="999"></NumericEdit>
+        @*<NumericEdit class="@editContext.BlazoriseFieldCssClass(() => person.Age)" TValue="int" Value="person.Age" ValueChanged="@((v) => ValueChanged(v, editContext))" Min="0" Max="999"></NumericEdit>*@
 
         @*<NumericEdit @bind-Value="person.Age" Min="0" Max="999"></NumericEdit>*@
-        <ValidationMessage For="() => person.Age" />
+        @*<ValidationMessage For="() => person.Age" />*@
     </Field>
 
 
-    <Column ColumnSize="ColumnSize.Is2">
-        <InputNumber @bind-Value="person.Age" />
-        <ValidationMessage For="() => person.Age" />
-    </Column>
+    @*<Column ColumnSize="ColumnSize.Is2">
+            <InputNumber @bind-Value="person.Age" />
+            <ValidationMessage For="() => person.Age" />
+        </Column>*@
 
 
     <DateEdit TValue="DateTime?" @bind-Date="@person.Date" Placeholder="dd-mm-yyyy" />
