@@ -11,7 +11,7 @@ namespace BlazorAppWebAssembly
     {
         public static string BlazoriseFieldCssClass(this EditContext editContext, in Expression<Func<object>> accessor)
         {
-            editContext.OnValidationStateChanged += EditContext_OnValidationStateChanged;
+            //editContext.OnValidationStateChanged += EditContext_OnValidationStateChanged;
 
             var fi = FieldIdentifier.Create(accessor);
             bool modified = editContext.IsModified(accessor);
