@@ -41,20 +41,20 @@ namespace BlazorAppWebAssembly
             //}
         }
 
-        private static void EditContext_OnValidationStateChanged(object sender, ValidationStateChangedEventArgs e)
-        {
-            var editContext = (EditContext) sender;
-            bool isValid = !editContext.GetValidationMessages(accessor).Any();
-            Console.WriteLine($"{fi.FieldName} valid = {isValid}");
+        //private static void EditContext_OnValidationStateChanged(object sender, ValidationStateChangedEventArgs e)
+        //{
+        //    var editContext = (EditContext) sender;
+        //    bool isValid = !editContext.GetValidationMessages(accessor).Any();
+        //    Console.WriteLine($"{fi.FieldName} valid = {isValid}");
 
-            var c = new BootstrapClassProvider();
+        //    var c = new BootstrapClassProvider();
 
-            if (!modified)
-            {
-                return c.ToValidationStatus(ValidationStatus.None);
-            }
+        //    if (!modified)
+        //    {
+        //        return c.ToValidationStatus(ValidationStatus.None);
+        //    }
 
-            return c.ToValidationStatus(isValid ? ValidationStatus.Success : ValidationStatus.Error);
-        }
+        //    return c.ToValidationStatus(isValid ? ValidationStatus.Success : ValidationStatus.Error);
+        //}
     }
 }
