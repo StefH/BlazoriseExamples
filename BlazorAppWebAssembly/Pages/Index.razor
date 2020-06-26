@@ -1,31 +1,32 @@
 ﻿@page "/"
 @using System.Text.Json
-<EditForm Model="person" Context="editContext">
+@using Blazored;
 
-    @*<FluentValidationValidator />*@
-    <FluentValidator></FluentValidator>
+    <EditForm Model="person" Context="editContext">
+        <FluentValidationValidator DisableAssemblyScanning="true" />
 
-    @{
-        editContext.OnFieldChanged += (sender, eventArgs) =>
-        {
-            Console.WriteLine("!!!!!OnFieldChanged for FieldName = " + eventArgs.FieldIdentifier.FieldName);
-        };
-    }
+        @*@{
+            editContext.OnFieldChanged += (sender, eventArgs) =>
+            {
+                Console.WriteLine("!!!!!OnFieldChanged for FieldName = " + eventArgs.FieldIdentifier.FieldName);
+            };
+        }*@
 
-    <Validation>
-        <Field>
-            <FieldLabel><strong>Age</strong></FieldLabel>
-            <NumericEdit @bind-Value="@person.Age" Min="0" Max="999">
-                <Feedback>
-                    <ValidationError />
-                </Feedback>
-            </NumericEdit>
-        </Field>
-    </Validation>
+        @*<Validation>
+            <Field>
+                <FieldLabel><strong>Age</strong></FieldLabel>
+                <NumericEdit @bind-Value="@person.Age" Min="0" Max="999">
+                    <Feedback>
+                        <ValidationError />
+                    </Feedback>
+                </NumericEdit>
+            </Field>
+        </Validation>*@
 
     <Field>
         @*<NumericEdit2 @bind-Value="person.Age" Min="0" Max="999"></NumericEdit2>*@
-        @*<NumericEdit2 class="@editContext.BlazoriseFieldCssClass(() => person.Age)" @bind-Value="person.Age" Min="0" Max="999"></NumericEdit2>*@
+        <NumericEdit2 class="@editContext.BlazoriseFieldCssClass(() => person.Age)" @bind-Value="person.Age" Min="0" Max="999"></NumericEdit2>
+        <ValidationMessage For="() => person.Age" />
         @*<NumericEdit class="@editContext.BlazoriseFieldCssClass(() => person.Age)" TValue="int" Value="person.Age" ValueChanged="@((v) => ValueChanged(v, editContext))" Min="0" Max="999"></NumericEdit>*@
 
         @*<NumericEdit @bind-Value="person.Age" Min="0" Max="999"></NumericEdit>*@
@@ -33,17 +34,17 @@
     </Field>
 
 
-    @*<Column ColumnSize="ColumnSize.Is2">
+        @*<Column ColumnSize="ColumnSize.Is2">
             <InputNumber @bind-Value="person.Age" />
             <ValidationMessage For="() => person.Age" />
         </Column>*@
 
 
-    <DateEdit TValue="DateTime?" @bind-Date="@person.Date" Placeholder="dd-mm-yyyy" />
+        <DateEdit TValue="DateTime?" @bind-Date="@person.Date" Placeholder="dd-mm-yyyy" />
 
-    <button type="submit">Save</button>
+        <button type="submit">Save</button>
 
-</EditForm>
+    </EditForm>
 
 @code
 {

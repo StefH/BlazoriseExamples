@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 using Blazorise;
 using Blazorise.Bootstrap;
 using Microsoft.AspNetCore.Components.Forms;
@@ -13,6 +11,8 @@ namespace BlazorAppWebAssembly
     {
         public static string BlazoriseFieldCssClass(this EditContext editContext, in Expression<Func<object>> accessor)
         {
+            editContext.OnValidationStateChanged += EditContext_OnValidationStateChanged;
+
             var fi = FieldIdentifier.Create(accessor);
             bool modified = editContext.IsModified(accessor);
             Console.WriteLine($"{fi.FieldName} modified = {modified}");
@@ -39,6 +39,22 @@ namespace BlazorAppWebAssembly
             //{
             //    return isValid ? c.ToValidationStatus(ValidationStatus.None) : c.ToValidationStatus(ValidationStatus.Error);
             //}
+        }
+
+        private static void EditContext_OnValidationStateChanged(object sender, ValidationStateChangedEventArgs e)
+        {
+            var editContext = (EditContext) sender;
+            bool isValid = !editContext.GetValidationMessages(accessor).Any();
+            Console.WriteLine($"{fi.FieldName} valid = {isValid}");
+
+            var c = new BootstrapClassProvider();
+
+            if (!modified)
+            {
+                return c.ToValidationStatus(ValidationStatus.None);
+            }
+
+            return c.ToValidationStatus(isValid ? ValidationStatus.Success : ValidationStatus.Error);
         }
     }
 }
