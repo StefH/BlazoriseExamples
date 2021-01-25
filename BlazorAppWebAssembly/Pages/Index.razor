@@ -2,17 +2,17 @@
 @using System.Text.Json
 @using Blazored;
 
-    <EditForm Model="person" Context="editContext">
-        <FluentValidationValidator DisableAssemblyScanning="true" />
+<EditForm Model="person" Context="editContext">
+    <FluentValidationValidator DisableAssemblyScanning="true" />
 
-        @*@{
+    @*@{
             editContext.OnFieldChanged += (sender, eventArgs) =>
             {
                 Console.WriteLine("!!!!!OnFieldChanged for FieldName = " + eventArgs.FieldIdentifier.FieldName);
             };
         }*@
 
-        @*<Validation>
+    @*<Validation>
             <Field>
                 <FieldLabel><strong>Age</strong></FieldLabel>
                 <NumericEdit @bind-Value="@person.Age" Min="0" Max="999">
@@ -34,17 +34,19 @@
     </Field>
 
 
-        @*<Column ColumnSize="ColumnSize.Is2">
+    @*<Column ColumnSize="ColumnSize.Is2">
             <InputNumber @bind-Value="person.Age" />
             <ValidationMessage For="() => person.Age" />
         </Column>*@
 
 
-        <DateEdit TValue="DateTime?" @bind-Date="@person.Date" Placeholder="dd-mm-yyyy" />
+    <DateEdit TValue="DateTime?" @bind-Date="@person.Date" Placeholder="dd-mm-yyyy" />
 
-        <button type="submit">Save</button>
+    <DateEdit2 TValue="DateTime?" @bind-Date="@person.Date" Placeholder="dd-mm-yyyy" />
 
-    </EditForm>
+    <button type="submit">Save</button>
+
+</EditForm>
 
 @code
 {
